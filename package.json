@@ -1,0 +1,27 @@
+{
+  "name": "resume_parsing",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.13.6",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "form-data": "^4.0.5",
+    "multer": "^2.1.1",
+    "pdf-parse": "^1.1.1",
+    "pdfkit": "^0.17.2",
+    "playwright": "^1.58.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
