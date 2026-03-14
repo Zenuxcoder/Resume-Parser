@@ -1,3 +1,23 @@
+:root {
+    /* Colors */
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-page: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    
+    /* Elevation */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    
+    /* Radius */
+    --radius: 10px;
+    --radius-sm: 6px;
+}
+
 /* ===== Reset & Base ===== */
 *,
 *::before,
@@ -8,19 +28,22 @@
 }
 
 body {
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
-    background: #f5f6f8;
-    color: #1e1e1e;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg-page);
+    color: var(--text-main);
     line-height: 1.6;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* ===== Navbar ===== */
 .navbar {
-    background: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color);
     padding: 0 24px;
-    height: 56px;
+    height: 60px;
     display: flex;
     align-items: center;
     position: sticky;
@@ -29,10 +52,10 @@ body {
 }
 
 .navbar .logo {
-    font-size: 18px;
-    font-weight: 600;
-    color: #111;
-    letter-spacing: -0.3px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.025em;
 }
 
 .navbar .logo span {
@@ -70,21 +93,28 @@ body {
 
 /* ===== Section Cards ===== */
 .card {
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    padding: 24px 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 32px;
     margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .card h2 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: #222;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #0f172a;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
 }
 
 .card h2 .icon {
@@ -94,20 +124,22 @@ body {
 
 /* ===== Upload Area ===== */
 .upload-area {
-    border: 2px dashed #ccc;
-    border-radius: 6px;
-    padding: 36px 20px;
+    border: 2px dashed #cbd5e1;
+    border-radius: var(--radius);
+    padding: 48px 24px;
     text-align: center;
-    color: #888;
+    color: var(--text-muted);
     font-size: 14px;
     cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
+    transition: all 0.2s ease;
+    background: #fcfdfe;
 }
 
 .upload-area:hover,
 .upload-area.dragover {
-    border-color: #888;
-    background: #fafafa;
+    border-color: var(--primary);
+    background: #eff6ff;
+    color: var(--primary);
 }
 
 .upload-area .upload-icon {
@@ -128,38 +160,43 @@ body {
 
 /* ===== Buttons ===== */
 .btn {
-    display: inline-block;
-    padding: 9px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
     font-size: 14px;
-    font-weight: 500;
-    border: 1px solid #d0d0d0;
-    border-radius: 4px;
-    background: #fff;
-    color: #333;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    color: var(--text-main);
     cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
+    transition: all 0.2s ease;
     margin-top: 12px;
 }
 
 .btn:hover {
-    background: #f0f0f0;
-    border-color: #bbb;
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
 }
 
 .btn:disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
+    transform: none;
 }
 
 .btn-primary {
-    background: #2563eb;
+    background: var(--primary);
     color: #fff;
-    border-color: #2563eb;
+    border-color: var(--primary);
 }
 
 .btn-primary:hover {
-    background: #1d4ed8;
-    border-color: #1d4ed8;
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+    box-shadow: 0 4px 12px rgb(37 99 235 / 0.2);
 }
 
 /* ===== Textarea ===== */
