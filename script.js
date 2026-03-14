@@ -1,10 +1,8 @@
-
 let parsedResume = null;
 let parsedJDs = [];
 
 const API = '/api';
 
-// ===== Resume Upload =====
 const resumeDropzone = document.getElementById('resumeDropzone');
 const resumeFileInput = document.getElementById('resumeFileInput');
 const resumeFileName = document.getElementById('resumeFileName');
