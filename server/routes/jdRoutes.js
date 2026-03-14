@@ -1,3 +1,7 @@
+/**
+ * jdRoutes.js
+ * Routes for job description processing.
+ */
 
 const express = require('express');
 const { processJD } = require('../controllers/jdController');

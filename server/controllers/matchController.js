@@ -1,3 +1,8 @@
+/**
+ * matchController.js
+ * Accepts parsed resume data and JD data, produces
+ * skill analysis and matching scores.
+ */
 
 const { matchResumeToJobs } = require('../utils/matcher');
 
@@ -13,6 +18,7 @@ function matchJobs(req, res) {
             return res.status(400).json({ error: 'At least one job description is required.' });
         }
 
+        // Run the matching logic
         const result = matchResumeToJobs(resumeData, jdData);
 
         return res.json({

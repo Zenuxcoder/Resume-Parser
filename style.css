@@ -1,19 +1,32 @@
 :root {
+    /* Colors - Natural & Human */
+    --primary: #0ea5e9;        /* Sky Blue */
     --primary-hover: #0284c7;
+    --success: #10b981;        /* Emerald */
+    --warning: #f59e0b;        /* Amber */
+    --error: #ef4444;          /* Rose */
     
+    --bg-page: #f8fafc;        /* Slate 50 */
     --bg-card: #ffffff;
+    --text-main: #0f172a;       /* Slate 900 */
+    --text-muted: #64748b;      /* Slate 500 */
+    --border-color: #e2e8f0;    /* Slate 200 */
     
+    /* Elevation */
     --shadow-soft: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
     --shadow-lift: 0 10px 25px -10px rgba(0, 0, 0, 0.1);
     
+    /* Motion - The 'Human' feel */
     --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     --transition-snappy: all 0.3s var(--spring);
     --transition-fluid: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     
+    /* Radius */
     --radius: 12px;
     --radius-sm: 8px;
 }
 
+/* ===== Reset & Base ===== */
 *,
 *::before,
 *::after {
@@ -31,6 +44,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* ===== Navbar ===== */
 .navbar {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(8px);
@@ -78,12 +92,14 @@ body {
     color: #111;
 }
 
+/* ===== Container ===== */
 .container {
     max-width: 960px;
     margin: 32px auto;
     padding: 0 20px;
 }
 
+/* ===== Section Cards ===== */
 .card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -150,6 +166,7 @@ body {
     opacity: 0.65;
 }
 
+/* ===== Upload Area ===== */
 .upload-area {
     border: 2px dashed #cbd5e1;
     border-radius: var(--radius);
@@ -192,6 +209,7 @@ body {
     margin-top: 8px;
 }
 
+/* ===== Buttons ===== */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -239,6 +257,7 @@ body {
     box-shadow: 0 8px 20px -4px rgb(14 165 233 / 0.3);
 }
 
+/* ===== Textarea ===== */
 .job-textarea {
     width: 100%;
     min-height: 140px;
@@ -261,6 +280,7 @@ body {
     color: #aaa;
 }
 
+/* ===== Extracted Info ===== */
 .extracted-info {
     display: none;
     margin-top: 24px;
@@ -310,6 +330,7 @@ body {
     color: #222;
 }
 
+/* ===== Skills Tags ===== */
 .skills-list {
     display: flex;
     flex-wrap: wrap;
@@ -339,6 +360,7 @@ body {
     border: 1px solid #fecaca;
 }
 
+/* ===== Results Table ===== */
 .results-table-wrapper {
     overflow-x: auto;
 }
@@ -396,6 +418,7 @@ body {
     color: #991b1b;
 }
 
+/* ===== Skills Analysis Panel ===== */
 .skills-analysis {
     margin-top: 20px;
     padding: 16px 20px;
@@ -411,6 +434,7 @@ body {
     color: #333;
 }
 
+/* ===== Empty / Placeholder State ===== */
 .empty-state {
     text-align: center;
     padding: 32px 20px;
@@ -424,6 +448,7 @@ body {
     margin-bottom: 8px;
 }
 
+/* ===== Status Messages ===== */
 .status-msg {
     display: none;
     margin-top: 12px;
@@ -447,6 +472,7 @@ body {
     border: 1px solid #fecaca;
 }
 
+/* ===== JD List ===== */
 .jd-list {
     margin-top: 12px;
 }
@@ -468,6 +494,7 @@ body {
     color: #777;
 }
 
+/* ===== Footer ===== */
 .footer {
     text-align: center;
     padding: 24px 20px;
@@ -477,6 +504,7 @@ body {
     margin-top: 40px;
 }
 
+/* ===== Responsive ===== */
 @media (max-width: 640px) {
     .container {
         padding: 0 12px;
