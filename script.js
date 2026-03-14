@@ -1,9 +1,7 @@
-// ===== State =====
-// Stores parsed data from each step for use in matching
+
 let parsedResume = null;
 let parsedJDs = [];
 
-// API base URL (same origin when served by Express)
 const API = '/api';
 
 // ===== Resume Upload =====
@@ -16,10 +14,8 @@ const extractedInfo = document.getElementById('extractedInfo');
 
 let selectedResumeFile = null;
 
-// Click to browse
 resumeDropzone.addEventListener('click', () => resumeFileInput.click());
 
-// File selected via input
 resumeFileInput.addEventListener('change', (e) => {
     if (e.target.files.length > 0) {
         selectedResumeFile = e.target.files[0];
@@ -29,7 +25,6 @@ resumeFileInput.addEventListener('change', (e) => {
     }
 });
 
-// Drag & drop
 resumeDropzone.addEventListener('dragover', (e) => {
     e.preventDefault();
     resumeDropzone.classList.add('dragover');
@@ -50,7 +45,6 @@ resumeDropzone.addEventListener('drop', (e) => {
     }
 });
 
-// Upload Resume → POST /api/upload-resume
 uploadResumeBtn.addEventListener('click', async () => {
     if (!selectedResumeFile) return;
 
@@ -73,14 +67,11 @@ uploadResumeBtn.addEventListener('click', async () => {
             throw new Error(json.error || 'Upload failed');
         }
 
-        // Store parsed resume data
         parsedResume = json.data;
 
-        // Show success
         resumeStatus.className = 'status-msg success';
         resumeStatus.textContent = '✓ Resume uploaded and parsed successfully.';
 
-        // Populate extracted info
         document.getElementById('extractedName').textContent = parsedResume.name;
         document.getElementById('extractedExp').textContent =
             parsedResume.yearsOfExperience > 0
@@ -97,11 +88,9 @@ uploadResumeBtn.addEventListener('click', async () => {
         });
 
         extractedInfo.classList.add('visible');
-
-        // Show Next Step button
+        
         document.getElementById('nextStepBtn').style.display = 'inline-block';
 
-        // Enable match button if JDs are also available
         updateMatchButton();
 
     } catch (err) {
@@ -114,13 +103,11 @@ uploadResumeBtn.addEventListener('click', async () => {
 });
 
 
-// ===== Job Description Processing =====
 const jobTextarea = document.getElementById('jobTextarea');
 const processJobBtn = document.getElementById('processJobBtn');
 const jobStatus = document.getElementById('jobStatus');
 const jdList = document.getElementById('jdList');
 
-// POST /api/process-jd
 processJobBtn.addEventListener('click', async () => {
     const text = jobTextarea.value.trim();
     if (!text) {
@@ -146,20 +133,16 @@ processJobBtn.addEventListener('click', async () => {
         if (!res.ok) {
             throw new Error(json.error || 'Processing failed');
         }
-
-        // Store parsed JD data
+        
         parsedJDs.push(json.data);
 
         jobStatus.className = 'status-msg success';
         jobStatus.textContent = `✓ Job description processed — ${json.data.jobId} (${json.data.role})`;
 
-        // Add to the JD list
         addJDToList(json.data);
 
-        // Clear textarea for next JD
         jobTextarea.value = '';
 
-        // Enable match button if resume is also available
         updateMatchButton();
 
     } catch (err) {
@@ -171,7 +154,6 @@ processJobBtn.addEventListener('click', async () => {
     }
 });
 
-/** Show a compact card for each processed JD */
 function addJDToList(jd) {
     jdList.style.display = 'block';
     const item = document.createElement('div');
@@ -185,14 +167,12 @@ function addJDToList(jd) {
 }
 
 
-// ===== Match Jobs =====
 const matchJobsBtn = document.getElementById('matchJobsBtn');
 
 function updateMatchButton() {
     matchJobsBtn.disabled = !(parsedResume && parsedJDs.length > 0);
 }
 
-// POST /api/match-jobs
 matchJobsBtn.addEventListener('click', async () => {
     if (!parsedResume || parsedJDs.length === 0) return;
 
@@ -226,7 +206,6 @@ matchJobsBtn.addEventListener('click', async () => {
 });
 
 
-// ===== Render Matching Results =====
 function renderResults(data) {
     const resultsBody = document.getElementById('resultsBody');
     resultsBody.innerHTML = '';
@@ -252,14 +231,11 @@ function renderResults(data) {
     `;
         resultsBody.appendChild(tr);
 
-        // Collect skill analysis for the panel
         job.skillsAnalysis.forEach(s => allSkillAnalysis.push(s));
     });
 
-    // Show results card
     document.getElementById('results').style.display = 'block';
 
-    // Build combined skills analysis (deduplicated)
     buildSkillsAnalysis(allSkillAnalysis);
 }
 
@@ -267,7 +243,6 @@ function buildSkillsAnalysis(allAnalysis) {
     const container = document.getElementById('skillsAnalysisList');
     container.innerHTML = '';
 
-    // Deduplicate: a skill is "present" if it was found in ANY analysis
     const skillMap = new Map();
     allAnalysis.forEach(({ skill, presentInResume }) => {
         const key = skill.toLowerCase();
@@ -290,8 +265,6 @@ function capitalize(str) {
     return str.replace(/\b\w/g, c => c.toUpperCase());
 }
 
-
-// ===== Two-Step UI Navigation =====
 const step1Container = document.getElementById('step1-container');
 const step2Container = document.getElementById('step2-container');
 const nextStepBtn = document.getElementById('nextStepBtn');
@@ -301,7 +274,6 @@ nextStepBtn.addEventListener('click', () => {
     step1Container.style.display = 'none';
     step2Container.style.display = 'block';
 
-    // Auto-scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
