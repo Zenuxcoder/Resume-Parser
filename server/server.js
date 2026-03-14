@@ -34,7 +34,12 @@ app.use((err, req, res, next) => {
     res.status(400).json({ error: err.message });
 });
 
-// --- Start server ---
-app.listen(PORT, () => {
-    console.log(`Resume Matcher server running at http://localhost:${PORT}`);
-});
+// --- Export app for Vercel ---
+module.exports = app;
+
+// --- Start server locally ---
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`Resume Matcher server running at http://localhost:${PORT}`);
+    });
+}
