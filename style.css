@@ -1,0 +1,427 @@
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    background: #f5f6f8;
+    color: #1e1e1e;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar .logo {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111;
+    letter-spacing: -0.3px;
+}
+
+.navbar .logo span {
+    color: #555;
+    font-weight: 400;
+    margin-left: 6px;
+    font-size: 13px;
+}
+
+.navbar .nav-links {
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.15s;
+}
+
+.navbar .nav-links a:hover {
+    color: #111;
+}
+
+/* ===== Container ===== */
+.container {
+    max-width: 960px;
+    margin: 32px auto;
+    padding: 0 20px;
+}
+
+/* ===== Section Cards ===== */
+.card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+}
+
+.card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card h2 .icon {
+    font-size: 18px;
+    opacity: 0.65;
+}
+
+/* ===== Upload Area ===== */
+.upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 6px;
+    padding: 36px 20px;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.upload-area:hover,
+.upload-area.dragover {
+    border-color: #888;
+    background: #fafafa;
+}
+
+.upload-area .upload-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.upload-area p {
+    margin: 4px 0;
+}
+
+.upload-area .file-name {
+    color: #333;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+/* ===== Buttons ===== */
+.btn {
+    display: inline-block;
+    padding: 9px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    margin-top: 12px;
+}
+
+.btn:hover {
+    background: #f0f0f0;
+    border-color: #bbb;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+/* ===== Textarea ===== */
+.job-textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: 'Inter', Arial, sans-serif;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    resize: vertical;
+    color: #333;
+    line-height: 1.5;
+}
+
+.job-textarea:focus {
+    outline: none;
+    border-color: #888;
+}
+
+.job-textarea::placeholder {
+    color: #aaa;
+}
+
+/* ===== Extracted Info ===== */
+.extracted-info {
+    display: none;
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+}
+
+.extracted-info.visible {
+    display: block;
+}
+
+.extracted-info h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.info-row {
+    display: flex;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.info-row .label {
+    font-weight: 500;
+    color: #555;
+    width: 160px;
+    flex-shrink: 0;
+}
+
+.info-row .value {
+    color: #222;
+}
+
+/* ===== Skills Tags ===== */
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.skill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.skill-tag.present {
+    background: #ecfdf5;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.skill-tag.missing {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+/* ===== Results Table ===== */
+.results-table-wrapper {
+    overflow-x: auto;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.results-table th,
+.results-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.results-table th {
+    font-weight: 600;
+    color: #555;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    background: #f9fafb;
+}
+
+.results-table td {
+    color: #333;
+}
+
+.results-table tbody tr:hover {
+    background: #f5f6f8;
+}
+
+.score-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.score-high {
+    background: #ecfdf5;
+    color: #166534;
+}
+
+.score-med {
+    background: #fefce8;
+    color: #854d0e;
+}
+
+.score-low {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+/* ===== Skills Analysis Panel ===== */
+.skills-analysis {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+}
+
+.skills-analysis h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+/* ===== Empty / Placeholder State ===== */
+.empty-state {
+    text-align: center;
+    padding: 32px 20px;
+    color: #999;
+    font-size: 14px;
+}
+
+.empty-state .empty-icon {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* ===== Status Messages ===== */
+.status-msg {
+    display: none;
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.status-msg.success {
+    display: block;
+    background: #ecfdf5;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.status-msg.error {
+    display: block;
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+/* ===== JD List ===== */
+.jd-list {
+    margin-top: 12px;
+}
+
+.jd-item {
+    padding: 10px 14px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #333;
+}
+
+.jd-item .jd-skills {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #777;
+}
+
+/* ===== Footer ===== */
+.footer {
+    text-align: center;
+    padding: 24px 20px;
+    color: #aaa;
+    font-size: 12px;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 40px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+    .container {
+        padding: 0 12px;
+        margin: 16px auto;
+    }
+
+    .card {
+        padding: 16px 18px;
+    }
+
+    .info-row {
+        flex-direction: column;
+    }
+
+    .info-row .label {
+        width: auto;
+        margin-bottom: 2px;
+    }
+
+    .navbar .nav-links {
+        gap: 12px;
+    }
+
+    .navbar .nav-links a {
+        font-size: 13px;
+    }
+}
