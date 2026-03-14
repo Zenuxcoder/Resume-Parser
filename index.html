@@ -14,14 +14,12 @@
 
 <body>
 
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">Resume Matcher</div>
     </nav>
 
     <div class="container">
 
-        <!-- ===== STEP 1: Upload Resume ===== -->
         <div id="step1-container" class="step-container active">
             <section id="upload" class="card">
                 <h2><span class="icon">📄</span> Step 1: Upload Resume</h2>
@@ -37,7 +35,6 @@
                 <button class="btn btn-primary" id="uploadResumeBtn" disabled>Upload Resume</button>
                 <div class="status-msg" id="resumeStatus"></div>
 
-                <!-- Extracted Info -->
                 <div class="extracted-info" id="extractedInfo">
                     <h3>Extracted Information</h3>
                     <div class="info-row">
@@ -63,7 +60,6 @@
             </div>
         </div>
 
-        <!-- ===== STEP 2: Job Descriptions & Matching ===== -->
         <div id="step2-container" class="step-container" style="display: none;">
             <div style="margin-bottom: 20px;">
                 <button class="btn" id="prevStepBtn"
@@ -80,7 +76,6 @@
                 <button class="btn btn-primary" id="processJobBtn">+ Add Job Description</button>
                 <div class="status-msg" id="jobStatus"></div>
 
-                <!-- Processed JDs list -->
                 <div id="jdList" class="jd-list" style="display:none;">
                     <h3 style="font-size:14px; font-weight:600; margin-top:16px; margin-bottom:8px; color:#333;">
                         Processed
@@ -88,7 +83,6 @@
                 </div>
             </section>
 
-            <!-- ===== Match Jobs Button ===== -->
             <section class="card" style="text-align:center;">
                 <h2><span class="icon">⚡</span> Run Matching</h2>
                 <p style="font-size:13px; color:#777; margin-bottom:12px;">
@@ -98,7 +92,6 @@
                 <button class="btn btn-primary" id="matchJobsBtn" disabled>Match Jobs</button>
             </section>
 
-            <!-- ===== Matching Results ===== -->
             <section id="results" class="card" style="display:none;">
                 <h2><span class="icon">📊</span> Matching Results</h2>
                 <div class="results-table-wrapper">
@@ -117,7 +110,6 @@
                 </div>
             </section>
 
-            <!-- ===== Skills Analysis ===== -->
             <section class="card" id="skillsAnalysis" style="display:none;">
                 <h2><span class="icon">🔍</span> Skills Analysis</h2>
                 <p style="font-size:13px; color:#777; margin-bottom:12px;">
@@ -126,7 +118,7 @@
                 </p>
                 <div class="skills-list" id="skillsAnalysisList"></div>
             </section>
-        </div><!-- End of Step 2 Container -->
+</div>
 
     </div>
 

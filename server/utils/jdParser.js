@@ -1,21 +1,8 @@
-/**
- * jdParser.js
- * Rule-based utility to extract role, salary, skills, and description
- * from job description text. No AI/LLM is used.
- *
- * Uses the new skillExtractor for robust skill detection.
- */
 
 const { extractSkills } = require('./skillExtractor');
 
-// Counter for auto-generating job IDs
 let jobIdCounter = 1000;
 
-/**
- * Extract the job role / title.
- * Looks for headers like "Role:", "Position:", "Job Title:" etc.
- * Falls back to the first short line.
- */
 function extractRole(text) {
     const patterns = [
         /(?:role|position|job\s*title|title)\s*[:–-]\s*(.+)/i,
@@ -29,15 +16,10 @@ function extractRole(text) {
         }
     }
 
-    // Fallback: first non-empty line (often the title)
     const firstLine = text.split('\n').map(l => l.trim()).find(l => l.length > 2 && l.length < 80);
     return firstLine || 'Unspecified Role';
 }
 
-/**
- * Extract salary from JD text.
- * Supports: "12 LPA", "$120,000", "₹10,00,000 per annum", "$80k-$120k", etc.
- */
 function extractSalary(text) {
     const patterns = [
         /(\d+\.?\d*)\s*lpa/i,
@@ -58,15 +40,9 @@ function extractSalary(text) {
     return null;
 }
 
-/**
- * Extract skills from JD text using the new skillExtractor.
- * Tries to separate required vs optional based on section headers.
- */
 function extractJDSkills(text) {
-    // Extract all skills from the full text
     const allSkills = extractSkills(text);
 
-    // Try to find an "optional" / "nice to have" section
     const optionalSection = text.match(
         /(?:nice\s*to\s*have|optional|preferred|bonus|good\s*to\s*have)[:\s]*([\s\S]*?)(?:\n\s*\n|required|must\s*have|$)/i
     );
@@ -75,7 +51,6 @@ function extractJDSkills(text) {
     let optionalSkills = [];
 
     if (optionalSection) {
-        // Extract skills specifically from the optional section
         const optionalText = optionalSection[1];
         const optionalMatches = new Set(extractSkills(optionalText).map(s => s.toLowerCase()));
 
@@ -86,9 +61,6 @@ function extractJDSkills(text) {
     return { requiredSkills, optionalSkills };
 }
 
-/**
- * Extract the "about role" / description section.
- */
 function extractAboutRole(text) {
     const patterns = [
         /(?:about\s*(?:the)?\s*role|description|responsibilities|overview)\s*[:–-]?\s*([\s\S]*?)(?:\n\s*\n|requirements|qualifications|skills|$)/i
@@ -104,9 +76,6 @@ function extractAboutRole(text) {
     return text.trim().substring(0, 200);
 }
 
-/**
- * Main parse function — accepts raw JD text, returns structured data.
- */
 function parseJD(text) {
     jobIdCounter++;
     const { requiredSkills, optionalSkills } = extractJDSkills(text);

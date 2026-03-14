@@ -1,8 +1,3 @@
-/**
- * jdController.js
- * Handles job description text input, parses it using
- * rule-based extraction for role, salary, skills, etc.
- */
 
 const { parseJD } = require('../utils/jdParser');
 
@@ -14,7 +9,6 @@ function processJD(req, res) {
             return res.status(400).json({ error: 'Job description text is required.' });
         }
 
-        // Parse JD using rule-based logic
         const parsed = parseJD(jdText);
 
         return res.json({
